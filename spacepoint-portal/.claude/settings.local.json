@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xxd -l 200 \"C:\\\\Users\\\\abhin\\\\Desktop\\\\Projects\\\\Space\\\\spacepoint-portal\\\\src\\\\pages\\\\intern\\\\Dashboard.jsx\")",
+      "Bash(iconv -f UTF-16LE -t UTF-8 \"C:\\\\Users\\\\abhin\\\\Desktop\\\\Projects\\\\Space\\\\spacepoint-portal\\\\src\\\\pages\\\\intern\\\\Dashboard.jsx\")",
+      "Bash(npm run *)",
+      "Bash(powershell -Command \"Get-Content 'C:\\\\Users\\\\abhin\\\\Desktop\\\\Projects\\\\Space\\\\spacepoint-portal\\\\.env' -Encoding Unicode | Set-Content 'C:\\\\Users\\\\abhin\\\\Desktop\\\\Projects\\\\Space\\\\spacepoint-portal\\\\.env.fixed' -Encoding UTF8; Get-Content 'C:\\\\Users\\\\abhin\\\\Desktop\\\\Projects\\\\Space\\\\spacepoint-portal\\\\.env.fixed'\")",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}
