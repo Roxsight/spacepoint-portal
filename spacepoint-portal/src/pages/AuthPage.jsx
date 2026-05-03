@@ -95,7 +95,26 @@ export default function AuthPage() {
       if (mode === "login") {
         const { data, error: err } = await supabase.auth.signInWithPassword({ email, password });
         if (err) throw err;
-        navigate("/dashboard");
+
+        const { data: profile, error: profileError } = await supabase
+          .from("profiles")
+          .select("role, onboarding_complete")
+          .eq("id", data.user.id)
+          .single();
+
+        if (profileError || !profile?.onboarding_complete) {
+          navigate("/onboarding");
+          return;
+        }
+
+        const routes = {
+          instructor: "/dashboard/instructor",
+          ambassador: "/dashboard/ambassador",
+          intern: "/dashboard/intern",
+          admin: "/admin",
+        };
+
+        navigate(routes[profile.role] || "/dashboard");
       } else {
         const { error: err } = await supabase.auth.signUp({ email, password });
         if (err) throw err;
