@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../lib/supabase";
+import { supabase } from "../lib/supabaseClient";
 
 // ─── Mission countdown target (change to real date) ───────────────────────────
 const LAUNCH_TARGET = new Date("2026-06-15T00:00:00Z");

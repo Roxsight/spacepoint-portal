@@ -1,16 +1,13 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import AdminDashboard from "./pages/admin/Dashboard";
-import LegacyAmbassadorDashboard from "./pages/ambassador/Dashboard";
-import LegacyInstructorDashboard from "./pages/instructor/Dashboard";
-import LegacyInternDashboard from "./pages/intern/Dashboard";
+import AmbassadorDashboard from "./pages/ambassador/Dashboard";
+import InstructorDashboard from "./pages/instructor/Dashboard";
+import InternDashboard from "./pages/intern/Dashboard";
 import AuthCallback from "./pages/AuthCallback";
 import Landing from "./pages/Landing";
 import AuthPage from "./pages/AuthPage";
 import OnboardingFlow from "./pages/OnboardingFlow";
-import InstructorDashboard from "./pages/InstructorDashboard";
-import AmbassadorDashboard from "./pages/AmbassadorDashboard";
-import InternDashboard from "./pages/InternDashboard";
 
 function RequireAuth({ children }) {
   const { user, profile, loading } = useAuth();
@@ -39,26 +36,12 @@ function RoleRouter() {
 
   const routes = {
     admin: "/admin",
-    ambassador: "/dashboard/ambassador",
-    instructor: "/dashboard/instructor",
-    intern: "/dashboard/intern",
+    ambassador: "/ambassador",
+    instructor: "/instructor",
+    intern: "/intern",
   };
 
   return <Navigate replace to={routes[profile?.role] ?? "/login"} />;
-}
-
-function RequireRole({ role, children }) {
-  const { profile, loading } = useAuth();
-
-  if (loading) {
-    return <div className="min-h-screen bg-slate-950 p-8 text-white">Loading...</div>;
-  }
-
-  if (profile?.role !== role) {
-    return <Navigate replace to="/dashboard" />;
-  }
-
-  return children;
 }
 
 export default function App() {
@@ -80,37 +63,7 @@ export default function App() {
         <Route
           element={
             <RequireAuth>
-              <RequireRole role="instructor">
-                <InstructorDashboard />
-              </RequireRole>
-            </RequireAuth>
-          }
-          path="/dashboard/instructor"
-        />
-        <Route
-          element={
-            <RequireAuth>
-              <RequireRole role="ambassador">
-                <AmbassadorDashboard />
-              </RequireRole>
-            </RequireAuth>
-          }
-          path="/dashboard/ambassador"
-        />
-        <Route
-          element={
-            <RequireAuth>
-              <RequireRole role="intern">
-                <InternDashboard />
-              </RequireRole>
-            </RequireAuth>
-          }
-          path="/dashboard/intern"
-        />
-        <Route
-          element={
-            <RequireAuth>
-              <LegacyInstructorDashboard />
+              <InstructorDashboard />
             </RequireAuth>
           }
           path="/instructor"
@@ -118,7 +71,7 @@ export default function App() {
         <Route
           element={
             <RequireAuth>
-              <LegacyAmbassadorDashboard />
+              <AmbassadorDashboard />
             </RequireAuth>
           }
           path="/ambassador"
@@ -126,7 +79,7 @@ export default function App() {
         <Route
           element={
             <RequireAuth>
-              <LegacyInternDashboard />
+              <InternDashboard />
             </RequireAuth>
           }
           path="/intern"
