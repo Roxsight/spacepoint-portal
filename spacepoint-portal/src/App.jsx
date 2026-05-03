@@ -6,9 +6,8 @@ import InstructorDashboard from "./pages/instructor/Dashboard";
 import InternDashboard from "./pages/intern/Dashboard";
 import AuthCallback from "./pages/AuthCallback";
 import Landing from "./pages/Landing";
-import Login from "./pages/Login";
-import Onboarding from "./pages/Onboarding";
-import Signup from "./pages/Signup";
+import AuthPage from "./pages/AuthPage";
+import OnboardingFlow from "./pages/OnboardingFlow";
 
 function RequireAuth({ children }) {
   const { user, profile, loading } = useAuth();
@@ -51,9 +50,8 @@ export default function App() {
       <Routes>
         <Route element={<Landing />} path="/" />
         <Route element={<AuthCallback />} path="/auth/callback" />
-        <Route element={<Login />} path="/login" />
-        <Route element={<Signup />} path="/signup" />
-        <Route element={<Onboarding />} path="/onboarding" />
+        <Route element={<AuthPage />} path="/login" />
+        <Route element={<OnboardingFlow />} path="/onboarding" />
         <Route
           element={
             <RequireAuth>
